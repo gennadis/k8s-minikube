@@ -25,10 +25,14 @@ $ docker-compose run web ./manage.py createsuperuser
 
 Образ с Django считывает настройки из переменных окружения:
 
-`SECRET_KEY` -- обязательная секретная настройка Django. Это соль для генерации хэшей. Значение может быть любым, важно лишь, чтобы оно никому не было известно. [Документация Django](https://docs.djangoproject.com/en/3.2/ref/settings/#secret-key).
+```sh
+SECRET_KEY=REPLACE_ME
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
+DATABASE_URL=postgres://test_k8s:OwOtBep9Frut@db:5432/test_k8s
 
-`DEBUG` -- настройка Django для включения отладочного режима. Принимает значения `TRUE` или `FALSE`. [Документация Django](https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-DEBUG).
-
-`ALLOWED_HOSTS` -- настройка Django со списком разрешённых адресов. Если запрос прилетит на другой адрес, то сайт ответит ошибкой 400. Можно перечислить несколько адресов через запятую, например `127.0.0.1,192.168.0.1,site.test`. [Документация Django](https://docs.djangoproject.com/en/3.2/ref/settings/#allowed-hosts).
-
-`DATABASE_URL` -- адрес для подключения к базе данных PostgreSQL. Другие СУБД сайт не поддерживает. [Формат записи](https://github.com/jacobian/dj-database-url#url-schema).
+POSTGRES_DB=test_k8s
+POSTGRES_USER=test_k8s
+POSTGRES_PASSWORD=OwOtBep9Frut
+```
+[Формат записи DATABASE_URL](https://github.com/jacobian/dj-database-url#url-schema).
